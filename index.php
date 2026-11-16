@@ -1,0 +1,111 @@
+<?php
+// Datos de los planes: nombre, cantidad de meses y precio para quien paga solo el gimnasio
+$planes = [
+    ['nombre' => 'Mensual',    'meses' => 1,  'precio' => 25000,  'destacado' => false],
+    ['nombre' => 'Trimestral', 'meses' => 3,  'precio' => 65000,  'destacado' => true],
+    ['nombre' => 'Semestral',  'meses' => 6,  'precio' => 120000, 'destacado' => false],
+    ['nombre' => 'Anual',      'meses' => 12, 'precio' => 210000, 'destacado' => false],
+];
+
+// Porcentaje de descuento extra para los socios que pagan la cuota social del club
+$descuentoSocio = 15;
+
+// Da formato a un precio: 25000 -> $25.000
+function formatearPrecio(float $valor): string {
+    return '$' . number_format($valor, 0, ',', '.');
+}
+
+// Calcula el precio con el descuento aplicado
+function conDescuento(int $precio, int $porcentaje): float {
+    return $precio - ($precio * $porcentaje / 100);
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gimnasio Huracán</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<!-- Barra de arriba -->
+<nav class="menu">
+    <span class="menu-titulo">Club Atlético Huracán</span>
+    <div>
+        <a href="index.php">Inicio</a>
+        <a href="login.php">Ingresar</a>
+        <a href="registro.php">Registrarme</a>
+    </div>
+</nav>
+
+<main>
+    <div class="cabecera">
+        <img src="img/escudo.png" alt="Escudo del Club Atlético Huracán" class="escudo">
+        <h1>Gimnasio del Club Atlético Huracán</h1>
+    </div>
+
+    <!-- Foto con texto encima -->
+    <div class="portada">
+        <img src="img/gimnasio.jpg" alt="Sala de musculación">
+        <div class="portada-texto">
+            <h2>Entrená en el club</h2>
+            <p>Elegí tu plan, creá tu cuenta y manejá tus datos online.</p>
+            <a href="registro.php" class="boton">Quiero ser socio</a>
+            <a href="login.php" class="boton">Ya soy socio</a>
+        </div>
+    </div>
+
+    <!-- Beneficios (editá los textos como quieras) -->
+    <h2>¿Por qué entrenar con nosotros?</h2>
+    <div class="beneficios">
+        <div class="beneficio">
+            <h3>Sala de musculación</h3>
+            <p>Máquinas y pesas para todos los niveles.</p>
+        </div>
+        <div class="beneficio">
+            <h3>Clases grupales</h3>
+            <p>Funcional, spinning y más, en distintos horarios.</p>
+        </div>
+        <div class="beneficio">
+            <h3>Profesores a cargo</h3>
+            <p>Te ayudamos a armar tu rutina.</p>
+        </div>
+    </div>
+
+    <!-- Planes -->
+    <h2>Nuestros planes</h2>
+
+    <div class="aviso">
+        <strong>¿Sos socio del club?</strong> Si tenés la cuota social al día, tenés
+        un <?= (int)$descuentoSocio ?>% de descuento extra en cualquier plan.
+        Si solo pagás el gimnasio, se mantiene el precio de lista.
+    </div>
+
+    <div class="planes">
+        <?php foreach ($planes as $plan): ?>
+            <div class="plan">
+                <?php if ($plan['destacado']): ?>
+                    <span class="etiqueta">Más elegido</span>
+                <?php endif; ?>
+
+                <h3><?= htmlspecialchars($plan['nombre'], ENT_QUOTES, 'UTF-8') ?></h3>
+                <p class="chico"><?= (int)$plan['meses'] ?> <?= $plan['meses'] === 1 ? 'mes' : 'meses' ?> de acceso</p>
+
+                <p class="chico">Solo gimnasio</p>
+                <p class="precio-gym"><?= formatearPrecio($plan['precio']) ?></p>
+
+                <p class="chico">Con cuota social</p>
+                <p class="precio-socio"><?= formatearPrecio(conDescuento($plan['precio'], $descuentoSocio)) ?></p>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</main>
+
+<footer class="pie">
+    Gimnasio del Club Atlético Huracán - Trabajo práctico final de Informática
+</footer>
+
+</body>
+</html>

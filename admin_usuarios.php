@@ -60,6 +60,7 @@ try {
         <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
+    <?php require __DIR__ . '/menu.php'; ?>
 <main>
     <h1>Gimnasio Huracán - Administración</h1>
     <p>

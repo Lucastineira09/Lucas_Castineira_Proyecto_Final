@@ -1,24 +1,8 @@
 <?php
-// Datos de los planes: nombre, cantidad de meses y precio para quien paga solo el gimnasio
-$planes = [
-    ['nombre' => 'Mensual',    'meses' => 1,  'precio' => 25000,  'destacado' => false],
-    ['nombre' => 'Trimestral', 'meses' => 3,  'precio' => 65000,  'destacado' => true],
-    ['nombre' => 'Semestral',  'meses' => 6,  'precio' => 120000, 'destacado' => false],
-    ['nombre' => 'Anual',      'meses' => 12, 'precio' => 210000, 'destacado' => false],
-];
+session_start();
 
-// Porcentaje de descuento extra para los socios que pagan la cuota social del club
-$descuentoSocio = 15;
-
-// Da formato a un precio: 25000 -> $25.000
-function formatearPrecio(float $valor): string {
-    return '$' . number_format($valor, 0, ',', '.');
-}
-
-// Calcula el precio con el descuento aplicado
-function conDescuento(int $precio, int $porcentaje): float {
-    return $precio - ($precio * $porcentaje / 100);
-}
+// Los planes y los precios están en planes.php
+require_once __DIR__ . '/planes.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,15 +14,7 @@ function conDescuento(int $precio, int $porcentaje): float {
 </head>
 <body>
 
-<!-- Barra de arriba -->
-<nav class="menu">
-    <span class="menu-titulo">Club Atlético Huracán</span>
-    <div>
-        <a href="index.php">Inicio</a>
-        <a href="login.php">Ingresar</a>
-        <a href="registro.php">Registrarme</a>
-    </div>
-</nav>
+<?php require __DIR__ . '/menu.php'; ?>
 
 <main>
     <div class="cabecera">
@@ -75,8 +51,7 @@ function conDescuento(int $precio, int $porcentaje): float {
     </div>
 
     <!-- Planes -->
-    <h2>Nuestros planes</h2>
-
+    <h2 id="planes">Nuestros planes</h2>
     <div class="aviso">
         <strong>¿Sos socio del club?</strong> Si tenés la cuota social al día, tenés
         un <?= (int)$descuentoSocio ?>% de descuento extra en cualquier plan.
@@ -98,13 +73,16 @@ function conDescuento(int $precio, int $porcentaje): float {
 
                 <p class="chico">Con cuota social</p>
                 <p class="precio-socio"><?= formatearPrecio(conDescuento($plan['precio'], $descuentoSocio)) ?></p>
+
+                <!-- Lleva a la página de pago con la cantidad de meses del plan -->
+                <a href="pagar.php?plan=<?= (int)$plan['meses'] ?>" class="boton">Elegir plan</a>
             </div>
         <?php endforeach; ?>
     </div>
 </main>
 
 <footer class="pie">
-    Gimnasio del Club Atlético Huracán - Trabajo práctico final de Informática
+    Gimnasio del Club Atlético Huracán - Trabajo práctico final de Informática - Lucas Castiñeira
 </footer>
 
 </body>

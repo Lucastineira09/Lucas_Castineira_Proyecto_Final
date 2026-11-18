@@ -1,272 +1,512 @@
-/* Estilos del Gimnasio Huracán - colores del club: rojo y blanco */
+/* Estilos del Gimnasio Huracán - colores del club: rojo, blanco y negro */
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #eeeeee;
-    color: #222;
-    margin: 0;
+:root {
+    --rojo: #c8102e;
+    --rojo-oscuro: #9b0d24;
+    --negro: #1b1b1f;
+    --gris-fondo: #f3f4f6;
+    --gris-borde: #e2e4e9;
+    --gris-texto: #5b6070;
+    --sombra: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
-/* barra de arriba */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    background-color: var(--gris-fondo);
+    color: var(--negro);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ---------- Barra de navegación ---------- */
 .menu {
-    background-color: #222;
-    color: white;
-    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--negro);
+    border-bottom: 3px solid var(--rojo);
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.menu a {
-    color: white;
-    text-decoration: none;
-    margin-left: 15px;
-}
-
-.menu a:hover {
-    text-decoration: underline;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 28px;
 }
 
 .menu-titulo {
-    font-weight: bold;
-}
-
-/* caja blanca en el medio de la página */
-main {
-    max-width: 950px;
-    margin: 20px auto;
-    background-color: white;
-    padding: 20px;
-    border: 1px solid #ccc;
-}
-
-h1 {
-    background-color: #cc0000;
     color: white;
-    padding: 12px;
-    margin-top: 0;
-    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.menu a {
+    color: #e8e8ec;
+    text-decoration: none;
+    margin-left: 6px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.menu a:hover {
+    background-color: var(--rojo);
+    color: white;
+}
+
+/* ---------- Contenedor principal ---------- */
+main {
+    max-width: 1000px;
+    margin: 28px auto;
+    background-color: white;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: var(--sombra);
+}
+
+/* ---------- Títulos y texto ---------- */
+h1 {
+    font-size: 30px;
+    margin: 0 0 16px 0;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--rojo);
 }
 
 h2 {
-    color: #cc0000;
+    font-size: 22px;
+    margin: 28px 0 12px 0;
+    padding-left: 14px;
+    position: relative;
+}
+
+h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 5px;
+    background-color: var(--rojo);
+    border-radius: 3px;
 }
 
 a {
-    color: #cc0000;
+    color: var(--rojo);
 }
 
-/* cabecera con el escudo */
+a:hover {
+    color: var(--rojo-oscuro);
+}
+
+main ul {
+    list-style: none;
+    padding: 12px 18px;
+    background-color: var(--gris-fondo);
+    border-radius: 12px;
+}
+
+main li {
+    padding: 7px 0;
+    border-bottom: 1px solid var(--gris-borde);
+}
+
+main li:last-child {
+    border-bottom: none;
+}
+
+/* ---------- Cabecera con el escudo ---------- */
 .cabecera {
     display: flex;
     align-items: center;
-    background-color: #cc0000;
-    padding: 10px;
-    margin-bottom: 15px;
+    gap: 18px;
+    background: linear-gradient(135deg, var(--rojo), var(--rojo-oscuro));
+    padding: 18px 22px;
+    border-radius: 14px;
+    margin-bottom: 22px;
 }
 
 .cabecera h1 {
-    background: none;
-    margin: 0 0 0 15px;
+    color: white;
+    margin: 0;
     padding: 0;
+    border: none;
+    font-size: 28px;
 }
 
 .escudo {
-    width: 70px;
+    width: 72px;
     height: auto;
     background-color: white;
-    padding: 4px;
+    padding: 6px;
+    border-radius: 12px;
 }
 
-/* foto con texto encima */
+/* ---------- Portada: foto con texto encima ---------- */
 .portada {
     position: relative;
-    margin-bottom: 20px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 28px;
 }
 
 .portada img {
     width: 100%;
-    height: 280px;
+    height: 340px;
     object-fit: cover;
     display: block;
 }
 
 .portada-texto {
     position: absolute;
-    left: 0;
+    top: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.65);
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    gap: 10px;
+    padding: 28px;
     color: white;
-    padding: 15px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1));
+}
+
+.portada-texto h2,
+.portada-texto p {
+    flex: 0 0 100%;
+    margin: 0;
 }
 
 .portada-texto h2 {
     color: white;
-    margin: 0 0 6px 0;
+    font-size: 34px;
+    padding-left: 0;
+}
+
+.portada-texto h2::before {
+    display: none;
 }
 
 .portada-texto p {
-    margin: 0 0 10px 0;
+    font-size: 17px;
 }
 
-/* beneficios */
+/* segundo botón de la portada: solo contorno */
+.portada-texto .boton + .boton {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 2px solid white;
+    padding: 9px 20px;
+}
+
+.portada-texto .boton + .boton:hover {
+    background-color: white;
+    color: var(--rojo);
+}
+
+/* ---------- Beneficios ---------- */
 .beneficios {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
 }
 
 .beneficio {
-    flex: 1;
-    min-width: 180px;
-    background-color: #f5f5f5;
-    border-left: 5px solid #cc0000;
-    padding: 10px;
+    background-color: var(--gris-fondo);
+    border-radius: 12px;
+    border-top: 4px solid var(--rojo);
+    padding: 18px;
 }
 
 .beneficio h3 {
-    margin: 0 0 5px 0;
-    font-size: 16px;
+    margin: 0 0 6px 0;
+    font-size: 17px;
 }
 
 .beneficio p {
     margin: 0;
     font-size: 14px;
+    color: var(--gris-texto);
 }
 
-/* aviso del descuento para socios */
+/* ---------- Aviso del descuento ---------- */
 .aviso {
-    background-color: #fff3f3;
-    border: 1px solid #cc0000;
-    padding: 10px;
-    margin-bottom: 15px;
+    background-color: #fff1f3;
+    border: 1px solid #f5c2cb;
+    border-left: 5px solid var(--rojo);
+    padding: 14px 16px;
+    border-radius: 10px;
+    margin-bottom: 22px;
 }
 
-/* planes */
+/* ---------- Planes ---------- */
 .planes {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+    margin-top: 24px;
 }
 
 .plan {
-    flex: 1;
-    min-width: 170px;
-    border: 1px solid #999;
-    border-top: 5px solid #cc0000;
-    padding: 12px;
+    position: relative;
+    background-color: white;
+    border: 1px solid var(--gris-borde);
+    border-radius: 16px;
+    padding: 28px 18px 22px 18px;
     text-align: center;
-    background-color: #fafafa;
+    box-shadow: var(--sombra);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.plan:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+/* el plan que tiene la etiqueta "Más elegido" se resalta */
+.plan:has(.etiqueta) {
+    border: 2px solid var(--rojo);
 }
 
 .plan h3 {
-    margin: 0 0 4px 0;
-    color: #cc0000;
+    margin: 0;
+    font-size: 21px;
+    color: var(--rojo);
 }
 
 .etiqueta {
-    background-color: #cc0000;
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--rojo);
     color: white;
-    font-size: 12px;
-    padding: 2px 8px;
-    display: inline-block;
-    margin-bottom: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 999px;
+    white-space: nowrap;
 }
 
 .chico {
     font-size: 12px;
-    color: #555;
-    margin: 6px 0 0 0;
+    color: var(--gris-texto);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 12px 0 0 0;
 }
 
-.precio-gym {
-    font-size: 22px;
-    font-weight: bold;
-    margin: 2px 0;
+.precio-gym,
+.precio-socio {
+    font-size: 27px;
+    font-weight: 800;
+    margin: 2px 0 0 0;
 }
 
 .precio-socio {
-    font-size: 22px;
-    font-weight: bold;
-    color: #cc0000;
-    margin: 2px 0;
+    color: var(--rojo);
 }
 
-/* links que parecen botones */
-.boton {
-    background-color: #cc0000;
-    color: white;
-    padding: 8px 14px;
-    text-decoration: none;
-    display: inline-block;
-    margin-right: 8px;
-}
-
-/* pie de página */
-.pie {
-    background-color: #222;
-    color: #ccc;
-    text-align: center;
-    padding: 12px;
-    font-size: 13px;
-    margin-top: 30px;
-}
-
-/* formularios */
-form label {
+.plan .boton {
     display: block;
-    margin-top: 10px;
-    font-weight: bold;
+    margin: 18px 0 0 0;
 }
 
-input, select {
-    width: 100%;
-    max-width: 350px;
-    padding: 6px;
-    margin-top: 4px;
-    border: 1px solid #999;
-}
-
+/* ---------- Botones ---------- */
+.boton,
 button {
-    background-color: #cc0000;
+    display: inline-block;
+    background-color: var(--rojo);
     color: white;
     border: none;
-    padding: 8px 14px;
-    margin-top: 12px;
+    padding: 11px 22px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
     cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
 }
 
+.boton:hover,
 button:hover {
-    background-color: #990000;
-}
-
-/* tablas del panel admin */
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 10px;
-}
-
-th {
-    background-color: #cc0000;
+    background-color: var(--rojo-oscuro);
     color: white;
 }
 
-th, td {
-    border: 1px solid #999;
-    padding: 6px;
-    text-align: left;
+.boton:active,
+button:active {
+    transform: translateY(1px);
+}
+
+/* botón de acciones peligrosas (eliminar) */
+.peligro {
+    background-color: #4a4d57;
+}
+
+.peligro:hover {
+    background-color: var(--negro);
+}
+
+/* ---------- Formularios ---------- */
+form label {
+    display: block;
+    margin-top: 16px;
+    font-weight: 600;
     font-size: 14px;
 }
 
-tr:nth-child(even) {
-    background-color: #f5f5f5;
+input,
+select {
+    width: 100%;
+    max-width: 420px;
+    padding: 11px 12px;
+    margin-top: 6px;
+    border: 1px solid #c9ccd4;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 15px;
+    background-color: white;
 }
 
-/* botones de la tabla más chicos */
-td button {
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--rojo);
+    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.15);
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin: 0 8px 0 0;
+}
+
+form button {
+    margin-top: 20px;
+}
+
+/* los formularios largos no ocupan todo el ancho */
+form[action="login.php"],
+form[action="registro.php"],
+form[action="crear_usuario.php"],
+form[action="editar_usuario.php"],
+form[action="pagar.php"] {
+    max-width: 460px;
+}
+
+/* buscador del panel de administración */
+input[type="search"] {
+    display: inline-block;
+    width: 320px;
+    max-width: 100%;
     margin-top: 0;
-    padding: 3px 8px;
+}
+
+input[type="search"] + button {
+    margin-top: 0;
+    margin-left: 8px;
+}
+
+/* ---------- Tablas ---------- */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 14px;
+    border: 1px solid var(--gris-borde);
+    border-radius: 12px;
+    overflow: hidden;
+    font-size: 14px;
+}
+
+th,
+td {
+    border: 0;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--negro);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+td {
+    border-top: 1px solid var(--gris-borde);
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fafafb;
+}
+
+tbody tr:hover {
+    background-color: #fff1f3;
+}
+
+td a {
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+td form {
+    display: inline-block;
+    margin: 2px 4px 2px 0;
+}
+
+td button {
+    padding: 6px 12px;
+    font-size: 13px;
+    margin: 0;
+    border-radius: 8px;
+}
+
+/* ---------- Pie de página ---------- */
+.pie {
+    background-color: var(--negro);
+    color: #b9bcc7;
+    text-align: center;
+    padding: 22px;
+    font-size: 13px;
+    margin-top: 40px;
+    border-top: 3px solid var(--rojo);
+}
+
+/* ---------- Celulares ---------- */
+@media (max-width: 700px) {
+    main {
+        margin: 14px;
+        padding: 18px;
+    }
+
+    .menu {
+        padding: 10px 14px;
+    }
+
+    .portada img {
+        height: 270px;
+    }
+
+    .portada-texto h2 {
+        font-size: 26px;
+    }
+
+    .cabecera h1 {
+        font-size: 20px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
 }

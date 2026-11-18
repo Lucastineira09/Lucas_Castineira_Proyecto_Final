@@ -81,6 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
+    <?php require __DIR__ . '/menu.php'; ?>
 <main>
     <div class="cabecera">
         <img src="img/escudo.png" alt="Escudo del Club Atlético Huracán" class="escudo">

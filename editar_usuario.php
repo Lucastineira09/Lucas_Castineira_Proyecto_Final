@@ -115,6 +115,7 @@ if ($esPost) {
         <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
+    <?php require __DIR__ . '/menu.php'; ?>
 <main>
     <h1>Editar socio</h1>
     <p><a href="admin_usuarios.php">&larr; Volver al listado</a></p>

@@ -42,6 +42,7 @@ try {
         <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
+    <?php require __DIR__ . '/menu.php'; ?>
 <main>
     <h1>Gimnasio Huracán - Socios archivados</h1>
     <p>
@@ -81,6 +82,13 @@ try {
                             <input type="hidden" name="id" value="<?= (int)$u['id'] ?>">
                             <input type="hidden" name="csrf_token" value="<?= escapar(generarTokenCsrf()) ?>">
                             <button type="submit">Reactivar</button>
+                        </form>
+                                                <!-- Eliminar también va por POST con token CSRF y pide confirmación -->
+                        <form action="eliminar_usuario.php" method="POST"
+                              onsubmit="return confirm('¿Eliminar DEFINITIVAMENTE a este socio? No se puede deshacer.');">
+                            <input type="hidden" name="id" value="<?= (int)$u['id'] ?>">
+                            <input type="hidden" name="csrf_token" value="<?= escapar(generarTokenCsrf()) ?>">
+                            <button type="submit" class="peligro">Eliminar</button>
                         </form>
                     </td>
                 </tr>
